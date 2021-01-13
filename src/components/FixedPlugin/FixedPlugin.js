@@ -22,7 +22,7 @@ class FixedPlugin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classes: "dropdown show",
+      classes: "dropdown",
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -37,10 +37,10 @@ class FixedPlugin extends Component {
     return (
       <div className="fixed-plugin">
         <div className={this.state.classes}>
-          <div onClick={this.handleClick}>
+          <div onClick={this.handleClick} className="cursor-pointer">
             <i className="fa fa-cog fa-2x" />
           </div>
-          <ul className="dropdown-menu show">
+          <ul className="dropdown-menu show pb-3">
             <li className="header-title">SIDEBAR BACKGROUND</li>
             <li className="adjustments-line">
               <div className="badge-colors text-center">
@@ -102,7 +102,7 @@ class FixedPlugin extends Component {
               </div>
             </li>
 
-            <li className="button-container">
+            {/* <li className="button-container">
               <a
                 href="https://www.creative-tim.com/product/now-ui-dashboard-pro-react?ref=nudr-fixed-plugin"
                 target="_blank"
@@ -123,7 +123,7 @@ class FixedPlugin extends Component {
               >
                 Documentation
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

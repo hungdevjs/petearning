@@ -71,3 +71,7 @@
     opacity: 1;
     color: #FFFFFF;
 }
+
+.cursor-pointer {
+    cursor: pointer
+}
