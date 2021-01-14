@@ -1,25 +1,4 @@
-/*!
-
-=========================================================
-* Now UI Dashboard React - v1.4.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
-
-// reactstrap components
+import React from "react"
 import {
   Card,
   CardHeader,
@@ -28,28 +7,24 @@ import {
   CardTitle,
   Row,
   Col,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Table,
   Button,
   Label,
   FormGroup,
   Input,
   UncontrolledTooltip,
-} from "reactstrap";
+} from "reactstrap"
 
-// core components
-import PanelHeader from "components/PanelHeader/PanelHeader.js";
+import PanelHeader from "components/PanelHeader/PanelHeader.js"
 import Logo from "../components/Logo"
+import Pet from "../components/Pet"
 
-import {
-  dashboardPanelChart,
-  dashboardShippedProductsChart,
-  dashboardAllProductsChart,
-  dashboard24HoursPerformanceChart,
-} from "variables/charts.js";
+const petTestData = [
+  { type: "dog", count: 2 },
+  { type: "chicken", count: 3 },
+  { type: "duck", count: 2 },
+  { type: "pig", count: 1 }
+]
 
 class Dashboard extends React.Component {
   render() {
@@ -64,41 +39,21 @@ class Dashboard extends React.Component {
         <div className="content">
           <Row>
             <Col xs={12} md={4}>
-              <Card className="card-chart">
+              <Card>
                 <CardHeader>
-                  <h5 className="card-category">Global Sales</h5>
-                  <CardTitle tag="h4">Shipped Products</CardTitle>
-                  <UncontrolledDropdown>
-                    <DropdownToggle
-                      className="btn-round btn-outline-default btn-icon"
-                      color="default"
-                    >
-                      <i className="now-ui-icons loader_gear" />
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another Action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                      <DropdownItem className="text-danger">
-                        Remove data
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  <CardTitle tag="h4" className="text-center">YOUR PETS</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={dashboardShippedProductsChart.data}
-                      options={dashboardShippedProductsChart.options}
-                    />
-                  </div>
+                  <Row>
+                    {petTestData.map(pet => <Col md={4}>
+                      <Pet
+                        key={pet.type}
+                        type={pet.type}
+                        count={pet.count}
+                      />
+                    </Col>)}
+                  </Row>
                 </CardBody>
-                <CardFooter>
-                  <div className="stats">
-                    <i className="now-ui-icons arrows-1_refresh-69" /> Just
-                    Updated
-                  </div>
-                </CardFooter>
               </Card>
             </Col>
           </Row>
