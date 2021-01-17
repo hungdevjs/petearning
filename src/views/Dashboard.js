@@ -129,7 +129,10 @@ class Dashboard extends React.Component {
                             />
                           </td>
                           <td className="text-center">{pet.count}</td>
-                          <td className="text-right">{pet.profit}</td>
+                          <td className="text-right">
+                            {pet.profit}{" "}
+                            <img src={gold} width={40} height={40} />
+                          </td>
                         </tr>)}
                       </tbody>
                     </Table>
