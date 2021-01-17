@@ -1,7 +1,7 @@
 import React from "react"
 import PerfectScrollbar from "perfect-scrollbar"
 
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 
 import DemoNavbar from "components/DemoNavbar"
 import Footer from "components/Footer"
@@ -12,7 +12,7 @@ import routes from "routes.js"
 
 var ps
 
-class Dashboard extends React.Component {
+class Layout extends React.Component {
   state = {
     backgroundColor: "yellow",
   }
@@ -54,12 +54,13 @@ class Dashboard extends React.Component {
               return (
                 <Route
                   path={prop.path}
+                  exact
                   component={prop.component}
                   key={key}
                 />
               )
             })}
-            <Redirect from="/" to="/dashboard" />
+            <Route from="*" component={() => <h1>404</h1>} />
           </Switch>
           <Footer fluid />
         </div>
@@ -72,4 +73,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard
+export default Layout

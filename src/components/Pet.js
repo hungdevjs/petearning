@@ -14,6 +14,7 @@ export default ({ type, count, sellable }) => {
             src={images[type]}
             width={60}
             height={60}
+            alt="pet"
         />
         {count && <div className="text-center font-weight-bold">
             {count}

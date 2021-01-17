@@ -27,6 +27,7 @@ export default () => {
                                 src={pet.image}
                                 width={200}
                                 height={200}
+                                alt="pet"
                             />
                         </Col>
                         <Col md={12}>
@@ -35,6 +36,7 @@ export default () => {
                                 {pet.price} {" "}
                                 <img
                                     src={gold}
+                                    alt="gold"
                                 />
                             </p>
                         </Col>

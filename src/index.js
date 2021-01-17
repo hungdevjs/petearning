@@ -1,39 +1,22 @@
-/*!
+import React from "react"
+import ReactDOM from "react-dom"
+import { Router, Route, Switch } from "react-router-dom"
 
-=========================================================
-* Now UI Dashboard React - v1.4.0
-=========================================================
+import "bootstrap/dist/css/bootstrap.css"
+import "assets/scss/now-ui-dashboard.scss?v1.4.0"
+import "assets/css/custom.css"
 
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
+import Layout from "layouts"
+import Login from "pages/Login"
 
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/now-ui-dashboard.scss?v1.4.0";
-import "assets/css/custom.css";
-
-import AdminLayout from "layouts/Admin.js";
-
-const hist = createBrowserHistory();
+import history from "./utils/history"
 
 ReactDOM.render(
-  <Router history={hist}>
+  <Router history={history}>
     <Switch>
-      <Route path="/" render={(props) => <AdminLayout {...props} />} />
-      <Redirect to="/dashboard" />
+      <Route path="/login" exact component={Login} />
+      <Route path="/" render={(props) => <Layout {...props} />} />
     </Switch>
   </Router>,
   document.getElementById("root")
-);
+)

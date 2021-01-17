@@ -30,7 +30,7 @@ class Sidebar extends React.Component {
   }
   render() {
     return (
-      <div className="sidebar" data-color={this.props.backgroundColor}>
+      <div className="sidebar" data-color={this.props.backgroundColor} >
         <div className="logo d-flex align-items-center">
           <p
             className="simple-text logo-normal text-center"
@@ -51,7 +51,7 @@ class Sidebar extends React.Component {
                   key={key}
                 >
                   <NavLink
-                    to={prop.layout + prop.path}
+                    to={prop.path}
                     className="nav-link"
                     activeClassName="active"
                   >

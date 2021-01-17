@@ -1,18 +1,9 @@
 import React from "react"
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
   Row,
   Col,
   Table,
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  UncontrolledTooltip,
+  Button
 } from "reactstrap"
 
 import PanelHeader from "components/PanelHeader"
@@ -70,7 +61,7 @@ class Dashboard extends React.Component {
                 <Row>
                   <Col md={12} className="d-flex align-items-center justify-content-center">
                     <span className="font-weight-bold mr-2" style={{ fontSize: 18 }}>{goldTestData}</span>
-                    <img src={gold} width={40} height={40} />
+                    <img src={gold} width={40} height={40} alt="gold" />
                   </Col>
                   <Col md={12}>
                     <Button block color="warning">
@@ -89,7 +80,7 @@ class Dashboard extends React.Component {
                 <Row>
                   <Col md={12} className="mb-3 d-flex align-items-center justify-content-center">
                     <span className="font-weight-bold mr-2" style={{ fontSize: 18 }}>{cashTestData}</span>
-                    <img src={dollar} width={40} height={40} />
+                    <img src={dollar} width={40} height={40} alt="dollar" />
                   </Col>
                   <Col md={12}>
                     <Button block color="success">
@@ -125,12 +116,13 @@ class Dashboard extends React.Component {
                               src={images[pet.type]}
                               width={50}
                               height={50}
+                              alt="pet"
                             />
                           </td>
                           <td className="text-center">{pet.count}</td>
                           <td className="text-right">
                             {pet.profit}{" "}
-                            <img src={gold} width={40} height={40} />
+                            <img src={gold} width={40} height={40} alt="gold" />
                           </td>
                         </tr>)}
                       </tbody>

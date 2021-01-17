@@ -2,7 +2,7 @@ import Dashboard from "pages/Dashboard"
 
 var dashRoutes = [
   {
-    path: "/dashboard",
+    path: "/",
     name: "Dashboard",
     icon: "design_app",
     component: Dashboard
