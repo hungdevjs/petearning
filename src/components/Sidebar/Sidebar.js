@@ -4,8 +4,6 @@ import { Nav } from "reactstrap"
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar"
 
-import logo from "logo-white.svg"
-
 var ps
 
 class Sidebar extends React.Component {
@@ -34,12 +32,11 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar" data-color={this.props.backgroundColor}>
         <div className="logo d-flex align-items-center">
-          <img src={logo} alt="react-logo" width={50} height={50} />
-          <span
-            className="simple-text logo-normal"
+          <p
+            className="simple-text logo-normal text-center"
           >
             Pet Earning
-          </span>
+          </p>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
           <Nav>

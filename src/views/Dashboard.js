@@ -46,7 +46,6 @@ class Dashboard extends React.Component {
     return (
       <>
         <PanelHeader
-          // size="lg"
           content={
             <Logo />
           }

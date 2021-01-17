@@ -168,9 +168,6 @@ class Header extends React.Component {
               >
                 <DropdownToggle caret nav>
                   <i className="now-ui-icons users_single-02" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Some Actions</span>
-                  </p>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem className="cursor-pointer">Log out</DropdownItem>
