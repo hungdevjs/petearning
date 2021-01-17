@@ -15,7 +15,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap"
 
-import PanelHeader from "components/PanelHeader/PanelHeader.js"
+import PanelHeader from "components/PanelHeader"
 import DashboardCard from "../components/DashboardCard"
 import Logo from "../components/Logo"
 import Pet from "../components/Pet"
