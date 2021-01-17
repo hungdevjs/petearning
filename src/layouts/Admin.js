@@ -1,28 +1,8 @@
-/*!
-
-=========================================================
-* Now UI Dashboard React - v1.4.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
-// reactstrap components
 import { Route, Switch, Redirect } from "react-router-dom";
 
-// core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
@@ -73,13 +53,13 @@ class Dashboard extends React.Component {
             {routes.map((prop, key) => {
               return (
                 <Route
-                  path={prop.layout + prop.path}
+                  path={prop.path}
                   component={prop.component}
                   key={key}
                 />
               );
             })}
-            <Redirect from="/admin" to="/admin/dashboard" />
+            <Redirect from="/" to="/dashboard" />
           </Switch>
           <Footer fluid />
         </div>
