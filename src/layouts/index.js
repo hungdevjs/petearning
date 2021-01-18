@@ -1,6 +1,6 @@
 import React from "react"
 import PerfectScrollbar from "perfect-scrollbar"
-
+import { connect } from "react-redux"
 import { Route, Switch } from "react-router-dom"
 
 import DemoNavbar from "components/DemoNavbar"
@@ -9,6 +9,9 @@ import Sidebar from "components/Sidebar"
 import FixedPlugin from "components/FixedPlugin"
 
 import routes from "routes.js"
+import history from "../utils/history"
+import { getAccessToken } from "../utils/common"
+import { getInfo } from "../commons/action"
 
 var ps
 
@@ -17,18 +20,27 @@ class Layout extends React.Component {
     backgroundColor: "yellow",
   }
   mainPanel = React.createRef()
-  componentDidMount() {
+  async componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.mainPanel.current)
       document.body.classList.toggle("perfect-scrollbar-on")
     }
+
+    const token = getAccessToken()
+    if (!token) {
+      history.push("/login")
+    } else {
+      await this.props.getInfo()
+    }
   }
+
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy()
       document.body.classList.toggle("perfect-scrollbar-on")
     }
   }
+
   componentDidUpdate(e) {
     if (e.history.action === "PUSH") {
       document.documentElement.scrollTop = 0
@@ -36,9 +48,11 @@ class Layout extends React.Component {
       this.mainPanel.current.scrollTop = 0
     }
   }
+
   handleColorClick = (color) => {
     this.setState({ backgroundColor: color })
   }
+
   render() {
     return (
       <div className="wrapper">
@@ -73,4 +87,8 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout
+const mapDispatchToProps = {
+  getInfo
+}
+
+export default connect(null, mapDispatchToProps)(Layout)
