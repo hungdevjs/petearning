@@ -8,7 +8,7 @@ import duck from "../assets/img/duck.png"
 
 const images = { dog, pig, chicken, duck }
 
-export default ({ type, count, sellable }) => {
+export default ({ type, quantity, sellable }) => {
     return <div className="p-3 text-center">
         <img
             src={images[type]}
@@ -16,8 +16,8 @@ export default ({ type, count, sellable }) => {
             height={60}
             alt="pet"
         />
-        {count && <div className="text-center font-weight-bold">
-            {count}
+        {quantity && <div className="text-center font-weight-bold">
+            {quantity}
         </div>}
 
         {sellable && <Row>
