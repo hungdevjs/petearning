@@ -20,25 +20,18 @@ import pig from "../../assets/img/pig.png"
 import chicken from "../../assets/img/chicken.png"
 import duck from "../../assets/img/duck.png"
 
-import { getDashboardInfo } from "./redux/action"
+import { getDashboardInfo, getPets } from "./redux/action"
 
 const images = { dog, pig, chicken, duck }
-
-const petTestData = [
-    { type: "dog", name: "Dog", count: 2, profit: 460 },
-    { type: "chicken", name: "Chicken", count: 3, profit: 120 },
-    { type: "duck", count: 2, profit: 324 },
-    { type: "pig", count: 1, profit: 73 }
-]
-
 
 const Dashboard = () => {
     const dispatch = useDispatch()
     const dashboard = useSelector(state => state.dashboard)
-    const { pets, gold, cash } = dashboard
+    const { pets, gold, cash, allPets } = dashboard
 
     useEffect(() => {
         dispatch(getDashboardInfo())
+        dispatch(getPets())
     }, [])
 
     return <>
@@ -70,11 +63,11 @@ const Dashboard = () => {
                                 <img src={goldImg} width={40} height={40} alt="gold" />
                             </Col>
                             <Col md={12}>
-                                <Button block color="warning">
-                                    INVEST <i className="now-ui-icons shopping_credit-card ml-1" />
-                                </Button>
                                 <Button block color="danger">
                                     EXCHANGE <i className="now-ui-icons business_money-coins ml-1" />
+                                </Button>
+                                <Button block color="warning">
+                                    INVEST <i className="now-ui-icons shopping_credit-card ml-1" />
                                 </Button>
                             </Col>
                         </Row>
@@ -84,11 +77,14 @@ const Dashboard = () => {
                 <Col xs={12} md={4}>
                     <DashboardCard title="YOUR CASH">
                         <Row>
-                            <Col md={12} className="mb-3 d-flex align-items-center justify-content-center">
+                            <Col md={12} className="d-flex align-items-center justify-content-center">
                                 <span className="font-weight-bold mr-2" style={{ fontSize: 18 }}>{cash}</span>
                                 <img src={dollar} width={40} height={40} alt="dollar" />
                             </Col>
                             <Col md={12}>
+                                <Button block color="danger">
+                                    EXCHANGE <i className="now-ui-icons business_money-coins ml-1" />
+                                </Button>
                                 <Button block color="success">
                                     WITHDRAW <i className="now-ui-icons education_paper ml-1" />
                                 </Button>
@@ -100,7 +96,7 @@ const Dashboard = () => {
             <Row>
                 <Col xs={12} md={6}>
                     <DashboardCard title="PET SHOP">
-                        <PetSlider />
+                        <PetSlider pets={allPets} />
                     </DashboardCard>
                 </Col>
                 <Col xs={12} md={6}>

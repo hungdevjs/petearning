@@ -9,22 +9,17 @@ import chicken from "../assets/img/chicken.png"
 import duck from "../assets/img/duck.png"
 import gold from "../assets/img/gold.png"
 
-const pets = [
-    { id: 1, image: dog, price: 1500, description: "Dog description" },
-    { id: 2, image: pig, price: 3245, description: "Pig description" },
-    { id: 3, image: chicken, price: 690, description: "Chicken description" },
-    { id: 4, image: duck, price: 1200, description: "Duck description" }
-]
+const images = { dog, pig, chicken, duck }
 
-export default () => {
+export default ({ pets }) => {
     return (
         <div className="slide-container">
             <Slide duration={3000} transitionDuration={400}>
-                {pets.map(pet => <div className="each-slide" key={pet.id}>
+                {pets.map(pet => <div className="each-slide" key={pet._id}>
                     <Row>
                         <Col md={12} className="text-center">
                             <img
-                                src={pet.image}
+                                src={images[pet.type]}
                                 width={200}
                                 height={200}
                                 alt="pet"
