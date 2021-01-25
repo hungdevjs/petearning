@@ -1,12 +1,14 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import {
     Row,
     Col,
     Table,
-    Button
+    Button,
+    Input
 } from "reactstrap"
 import { useSelector, useDispatch } from "react-redux"
 
+import ViewModal from "../../components/ViewModal"
 import PanelHeader from "components/PanelHeader"
 import DashboardCard from "../../components/DashboardCard"
 import Logo from "../../components/Logo"
@@ -20,7 +22,9 @@ import pig from "../../assets/img/pig.png"
 import chicken from "../../assets/img/chicken.png"
 import duck from "../../assets/img/duck.png"
 
-import { getDashboardInfo, getPets } from "./redux/action"
+import { getDashboardInfo, getPets, exchangeGoldCash } from "./redux/action"
+
+import useModal from "../../hooks/useModal"
 
 const images = { dog, pig, chicken, duck }
 
@@ -34,12 +38,60 @@ const Dashboard = () => {
         dispatch(getPets())
     }, [])
 
+    const [isOpen, toggle] = useModal()
+    const [option, setOption] = useState("gold")
+    const [quantity, setQuantity] = useState(0)
+
+    const exchange = async () => {
+        await exchangeGoldCash({ option, quantity })(dispatch)
+        toggle()
+        setQuantity()
+    }
+
+    const renderModal = () => {
+        return <ViewModal
+            isOpen={isOpen}
+            toggle={toggle}
+            title="Exchange"
+            noFooter
+        >
+            <Row>
+                <Col md={12}>
+                    <div className="w-100 d-flex justify-content-between align-items-center mb-2">
+                        <img src={option === "gold" ? goldImg : dollar} width={50} height={50} alt="gold" />
+                        <i
+                            className="fas fa-exchange-alt cursor-pointer"
+                            style={{ fontSize: 30 }}
+                            onClick={() => setOption(option === "gold" ? "cash" : "gold")}
+                        />
+                        <img src={option === "gold" ? dollar : goldImg} width={50} height={50} alt="cash" />
+                    </div>
+                </Col>
+                <Col md={12}>
+                    <Row>
+                        <Col md={10} className="d-flex align-items-center">
+                            <Input
+                                type="number"
+                                className="text-center p-2"
+                                value={quantity || ""}
+                                onChange={e => setQuantity(e.target.value)}
+                            />
+                        </Col>
+                        <Col md={2}>
+                            <img src={option === "gold" ? goldImg : dollar} width={50} height={50} alt="gold" />
+                        </Col>
+                    </Row>
+                </Col>
+                <Col md={12}>
+                    <Button block color="danger" onClick={exchange}>Exchange</Button>
+                </Col>
+            </Row>
+        </ViewModal>
+    }
+
     return <>
-        <PanelHeader
-            content={
-                <Logo />
-            }
-        />
+        {renderModal()}
+        <PanelHeader content={<Logo />} />
         <div className="content">
             <Row>
                 <Col xs={12} md={4}>
@@ -63,7 +115,10 @@ const Dashboard = () => {
                                 <img src={goldImg} width={40} height={40} alt="gold" />
                             </Col>
                             <Col md={12}>
-                                <Button block color="danger">
+                                <Button block color="danger" onClick={() => {
+                                    setOption("gold")
+                                    toggle()
+                                }}>
                                     EXCHANGE <i className="now-ui-icons business_money-coins ml-1" />
                                 </Button>
                                 <Button block color="warning">
@@ -82,7 +137,10 @@ const Dashboard = () => {
                                 <img src={dollar} width={40} height={40} alt="dollar" />
                             </Col>
                             <Col md={12}>
-                                <Button block color="danger">
+                                <Button block color="danger" onClick={() => {
+                                    setOption("cash")
+                                    toggle()
+                                }}>
                                     EXCHANGE <i className="now-ui-icons business_money-coins ml-1" />
                                 </Button>
                                 <Button block color="success">

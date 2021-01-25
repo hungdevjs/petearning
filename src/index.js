@@ -11,6 +11,7 @@ import Layout from "./layouts"
 import Login from "./pages/Login"
 
 import Loading from "./components/Loading"
+import Modal from "./components/Modal"
 
 import history from "./utils/history"
 import store from "./store"
@@ -24,6 +25,7 @@ ReactDOM.render(
       </Switch>
     </Router>
     <Loading />
+    <Modal />
   </Provider>,
   document.getElementById("root")
 )

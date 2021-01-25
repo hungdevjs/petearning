@@ -25,6 +25,8 @@ export const logIn = data => request.post("/account/login", data)
 
 export const getUserInfo = () => request.get("/account/info")
 
+export const getAllPets = () => request.get("/pets")
+
 export const getDashboard = () => request.get("/user/dashboard")
 
-export const getAllPets = () => request.get("/pets")
+export const exchange = data => request.post("/user/exchange", data)

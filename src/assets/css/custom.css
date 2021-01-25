@@ -97,3 +97,7 @@
     border-radius: 0;
     background-color: #f2f2f2;
 }
+
+.modal-content {
+    transform: translateY(-100%);
+}

@@ -7,6 +7,11 @@ export const setLoading = status => ({
     payload: status
 })
 
+export const setModal = modal => ({
+    type: "SET_MODAL",
+    payload: modal
+})
+
 export const getInfo = () => async dispatch => {
     const token = getAccessToken()
     if (!token) return
@@ -16,7 +21,7 @@ export const getInfo = () => async dispatch => {
         const res = await getUserInfo()
         dispatch({
             type: "SET_USER",
-            payload: res.data.data
+            payload: res.data
         })
     } catch (err) {
         localStorage.removeItem("accessToken")
