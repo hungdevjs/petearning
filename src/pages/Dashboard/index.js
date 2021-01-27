@@ -8,25 +8,21 @@ import {
 } from "reactstrap"
 import { useSelector, useDispatch } from "react-redux"
 
+import useModal from "../../hooks/useModal"
+
 import ViewModal from "../../components/ViewModal"
 import PanelHeader from "components/PanelHeader"
 import DashboardCard from "../../components/DashboardCard"
 import Logo from "../../components/Logo"
 import Pet from "../../components/Pet"
 import PetSlider from "../../components/PetSlider"
+import BuyPetModal from "../../components/BuyPetModal"
 
-import goldImg from "../../assets/img/gold.png"
-import dollar from "../../assets/img/dollar.png"
-import dog from "../../assets/img/dog.png"
-import pig from "../../assets/img/pig.png"
-import chicken from "../../assets/img/chicken.png"
-import duck from "../../assets/img/duck.png"
+import { images } from "../../utils/constants"
 
 import { getDashboardInfo, getPets, exchangeGoldCash } from "./redux/action"
 
-import useModal from "../../hooks/useModal"
-
-const images = { dog, pig, chicken, duck }
+const { goldImg, dollar } = images
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -89,8 +85,14 @@ const Dashboard = () => {
         </ViewModal>
     }
 
+    const [isOpenBuyPet, toggleOpenBuyPet] = useModal()
+
     return <>
         {renderModal()}
+        <BuyPetModal
+            isOpen={isOpenBuyPet}
+            toggle={toggleOpenBuyPet}
+        />
         <PanelHeader content={<Logo />} />
         <div className="content">
             <Row>
@@ -154,7 +156,10 @@ const Dashboard = () => {
             <Row>
                 <Col xs={12} md={6}>
                     <DashboardCard title="PET SHOP">
-                        <PetSlider pets={allPets} />
+                        <PetSlider
+                            pets={allPets}
+                            onClick={toggleOpenBuyPet}
+                        />
                     </DashboardCard>
                 </Col>
                 <Col xs={12} md={6}>

@@ -63,6 +63,10 @@
     cursor: pointer
 }
 
+.hover-opacity:hover {
+    opacity: 0.8
+}
+
 .login-pages {
     width: 100vw;
     height: 100vh;
@@ -99,5 +103,5 @@
 }
 
 .modal-content {
-    transform: translateY(-100%);
+    transform: translateY(-50%);
 }

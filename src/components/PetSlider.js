@@ -11,7 +11,7 @@ import gold from "../assets/img/gold.png"
 
 const images = { dog, pig, chicken, duck }
 
-export default ({ pets }) => {
+export default ({ pets, onClick }) => {
     return (
         <div className="slide-container">
             <Slide duration={3000} transitionDuration={400}>
@@ -40,7 +40,7 @@ export default ({ pets }) => {
             </Slide>
             <Row>
                 <Col md={12}>
-                    <Button block color="primary">
+                    <Button block color="primary" onClick={onClick}>
                         Buy now <i className="now-ui-icons shopping_cart-simple ml-1" />
                     </Button>
                 </Col>

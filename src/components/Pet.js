@@ -1,12 +1,7 @@
 import React from "react"
 import { Row, Col, Button } from "reactstrap"
 
-import dog from "../assets/img/dog.png"
-import pig from "../assets/img/pig.png"
-import chicken from "../assets/img/chicken.png"
-import duck from "../assets/img/duck.png"
-
-const images = { dog, pig, chicken, duck }
+import { images } from "../utils/constants"
 
 export default ({ type, quantity, sellable }) => {
     return <div className="p-3 text-center">
