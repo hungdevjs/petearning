@@ -1,5 +1,5 @@
 import { setLoading } from "../../../commons/action"
-import { getAllPets, getDashboard, exchange, buy } from "../../../api"
+import { getAllPets, getDashboard, exchange, buy, sell } from "../../../api"
 
 export const getDashboardInfo = () => async dispatch => {
     dispatch(setLoading(true))
@@ -50,6 +50,20 @@ export const buyPets = data => async dispatch => {
     dispatch(setLoading(true))
     try {
         await buy(data)
+        await dispatch(getDashboardInfo())
+        // alert success
+    } catch (err) {
+        console.log(err)
+        // alert err message
+    }
+
+    dispatch(setLoading(false))
+}
+
+export const sellPets = data => async dispatch => {
+    dispatch(setLoading(true))
+    try {
+        await sell(data)
         await dispatch(getDashboardInfo())
         // alert success
     } catch (err) {

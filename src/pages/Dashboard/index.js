@@ -101,8 +101,7 @@ const Dashboard = () => {
                         <div className="d-flex">
                             {pets && pets.map(pet => <Pet
                                 key={pet._id}
-                                type={pet.type}
-                                quantity={pet.quantity}
+                                pet={pet}
                                 sellable
                             />)}
                         </div>

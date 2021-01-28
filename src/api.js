@@ -32,3 +32,5 @@ export const getDashboard = () => request.get("/user/dashboard")
 export const exchange = data => request.post("/user/exchange", data)
 
 export const buy = data => request.post("/pets/buy", data)
+
+export const sell = data => request.post("/pets/sell", data)
