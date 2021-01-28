@@ -30,3 +30,5 @@ export const getAllPets = () => request.get("/pets")
 export const getDashboard = () => request.get("/user/dashboard")
 
 export const exchange = data => request.post("/user/exchange", data)
+
+export const buy = data => request.post("/pets/buy", data)

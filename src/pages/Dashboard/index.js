@@ -98,7 +98,7 @@ const Dashboard = () => {
             <Row>
                 <Col xs={12} md={4}>
                     <DashboardCard title="YOUR PETS">
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex">
                             {pets && pets.map(pet => <Pet
                                 key={pet._id}
                                 type={pet.type}
@@ -186,7 +186,7 @@ const Dashboard = () => {
                                             </td>
                                             <td className="text-center">{pet.quantity}</td>
                                             <td className="text-right">
-                                                {pet.profit}{" "}
+                                                {pet.profit.toFixed(2)}{" "}
                                                 <img src={goldImg} width={40} height={40} alt="gold" />
                                             </td>
                                         </tr>)}

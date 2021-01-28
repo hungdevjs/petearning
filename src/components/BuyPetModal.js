@@ -7,8 +7,11 @@ import ViewModal from "./ViewModal"
 
 import { images } from "../utils/constants"
 
+import { buyPets } from "../pages/Dashboard/redux/action"
+
 const BuyPetModal = ({ isOpen, toggle }) => {
     const { gold, allPets } = useSelector(state => state.dashboard)
+    const dispatch = useDispatch()
 
     const [petToBuy, setPetToBuy] = useState([])
     useEffect(() => {
@@ -35,6 +38,16 @@ const BuyPetModal = ({ isOpen, toggle }) => {
         }
 
         setPetToBuy(clonePetToBuy)
+    }
+
+    const buy = async () => {
+        const pets = petToBuy
+            .filter(pet => pet.quantity > 0)
+            .map(pet => ({ _id: pet._id, quantity: pet.quantity }))
+
+        await buyPets({ pets })(dispatch)
+        toggle()
+        setPetToBuy(allPets.map(pet => ({ ...pet, quantity: 0, totalPrice: 0 })))
     }
 
     return <ViewModal
@@ -75,7 +88,7 @@ const BuyPetModal = ({ isOpen, toggle }) => {
         </Row>
         <Row>
             <Col md={12}>
-                <Button color="primary" block>Buy</Button>
+                <Button color="primary" block onClick={buy}>Buy</Button>
             </Col>
         </Row>
     </ViewModal>
