@@ -185,7 +185,7 @@ const Dashboard = () => {
                                             </td>
                                             <td className="text-center">{pet.quantity}</td>
                                             <td className="text-right">
-                                                {pet.profit.toFixed(2)}{" "}
+                                                {pet.profit.toFixed(0)}{" "}
                                                 <img src={goldImg} width={40} height={40} alt="gold" />
                                             </td>
                                         </tr>)}
