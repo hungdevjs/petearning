@@ -78,10 +78,10 @@ class Layout extends React.Component {
           </Switch>
           <Footer fluid />
         </div>
-        <FixedPlugin
+        {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           handleColorClick={this.handleColorClick}
-        />
+        /> */}
       </div>
     )
   }
