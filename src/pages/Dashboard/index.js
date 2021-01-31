@@ -20,7 +20,7 @@ import BuyPetModal from "../../components/BuyPetModal"
 
 import { images } from "../../utils/constants"
 
-import { getDashboardInfo, getPets, exchangeGoldCash } from "./redux/action"
+import { getDashboardInfo, getPets, exchangeGoldCash, collectProfit } from "./redux/action"
 
 const { goldImg, dollar } = images
 
@@ -42,6 +42,10 @@ const Dashboard = () => {
         await exchangeGoldCash({ option, quantity })(dispatch)
         toggle()
         setQuantity()
+    }
+
+    const collect = async () => {
+        await collectProfit()(dispatch)
     }
 
     const renderModal = () => {
@@ -194,7 +198,7 @@ const Dashboard = () => {
                             </Col>
 
                             <Col md={12}>
-                                <Button block color="warning">
+                                <Button block color="warning" onClick={collect}>
                                     Collect all <i className="now-ui-icons arrows-1_cloud-download-93 ml-1" />
                                 </Button>
                             </Col>

@@ -1,5 +1,5 @@
-import { setLoading } from "../../../commons/action"
-import { getAllPets, getDashboard, exchange, buy, sell } from "../../../api"
+import { setLoading, setModal } from "../../../commons/action"
+import { getAllPets, getDashboard, exchange, buy, sell, collect } from "../../../api"
 
 export const getDashboardInfo = () => async dispatch => {
     dispatch(setLoading(true))
@@ -65,6 +65,27 @@ export const sellPets = data => async dispatch => {
     try {
         await sell(data)
         await dispatch(getDashboardInfo())
+        // alert success
+    } catch (err) {
+        console.log(err)
+        // alert err message
+    }
+
+    dispatch(setLoading(false))
+}
+
+export const collectProfit = () => async dispatch => {
+    dispatch(setLoading(true))
+    try {
+        dispatch(setModal({
+            isOpen: true,
+            type: "warning",
+            message: "Do you want to collect all your gold?",
+            onConfirm: async () => {
+                await collect()
+                await dispatch(getDashboardInfo())
+            }
+        }))
         // alert success
     } catch (err) {
         console.log(err)

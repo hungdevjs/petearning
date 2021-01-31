@@ -53,7 +53,7 @@ const ModalContainer = props => {
             <ModalFooter>
                 {onConfirm && (
                     <Button
-                        color={type}
+                        color="primary"
                         onClick={() => {
                             onConfirm()
                             toggle()
